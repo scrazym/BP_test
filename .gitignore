@@ -1,0 +1,43 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore any compiled CSS files
+*.css.map
+
+# Ignore compiled JavaScript files
+*.js.map
+
+# Ignore log files
+*.log
+
+# Ignore environment-specific files
+.env
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore editor-specific files
+.vscode/
+*.swp
+
+# Ignore npm debugging logs
+npm-debug.log*
+
+# Ignore yarn.lock file
+yarn.lock
+
+# Ignore dist folder for production builds
+/dist/
+
+# Ignore any backup files
+*~
+
+# Ignore any personal or sensitive files
+config.json
+
+# Ignore any temporary files
+.tmp/
+
+# Ignore any IDE or editor configuration files
+.idea/
