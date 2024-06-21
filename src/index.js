@@ -1,95 +1,56 @@
-import './styles.css';
-
-import en from './languages/en.json';
-import es from './languages/es.json';
-import fr from './languages/fr.json';
-import de from './languages/de.json';
-import ja from './languages/ja.json';
-import pt from './languages/pt.json';
-
-const languages = {
-  en,
-  es,
-  fr,
-  de,
-  ja,
-  pt
-};
+import "./styles.css";
+import { elements, offerElements, languages } from "./consts/consts";
 
 function adjustFontSizeForLanguage(lang) {
   const htmlElement = document.documentElement;
-
-  htmlElement.classList.remove('small-font', 'medium-font', 'large-font');
+  htmlElement.classList.remove("small-font", "medium-font", "large-font");
 
   switch (lang) {
-    case 'ja': // Японский
-    case 'zh': // Китайский
-    case 'de': // Немецкий
-    case 'es': // Испанский
-    case 'fr': // Французский
-    case 'pt': // Португальский
-      htmlElement.classList.add('small-font');
+    case "ja":
+    case "zh":
+    case "de":
+    case "es":
+    case "fr":
+    case "pt":
+      htmlElement.classList.add("small-font");
       break;
-    case 'en': 
-      htmlElement.classList.add('medium-font');
+    case "en":
+      htmlElement.classList.add("medium-font");
       break;
     default:
-      htmlElement.classList.add('medium-font'); 
+      htmlElement.classList.add("medium-font");
+  }
+}
+
+function updateTextContent(selector, text) {
+  const element = document.querySelector(selector);
+  if (element) {
+    element.innerHTML = text;
   }
 }
 
 function updateLanguageTexts(texts) {
-  const titleElement = document.querySelector('.modal__title');
-  const modalFirstDescr = document.querySelector('.modal__descr_first');
-  const modalSecondDescr = document.querySelector('.modal__descr_second');
-  const modalThirdDescr = document.querySelector('.modal__descr_third');
-  const continueButton = document.querySelector('.offers__continue');
-  const termsLink = document.querySelector('.footer__link_terms');
-  const privacyLink = document.querySelector('.footer__link_privacy');
-  const restoreLink = document.querySelector('.footer__link_restore');
+  Object.keys(elements).forEach((selector) => {
+    updateTextContent(selector, texts[elements[selector]]);
+  });
 
-  if (titleElement) {
-    titleElement.innerHTML = texts['Get Unlimited <br>Access'];
-  }
-  if (modalFirstDescr) {
-    modalFirstDescr.innerHTML = texts['Unlimited Art <br>Creation'];
-  }
-  if (modalSecondDescr) {
-    modalSecondDescr.innerHTML = texts['Exclusive <br>Styles'];
-  }
-  if (modalThirdDescr) {
-    modalThirdDescr.innerHTML = texts['Magic Avatars <br>With 20% Off'];
-  }
-  if (continueButton) {
-    continueButton.textContent = texts['Continue'];
-  }
-  if (termsLink) {
-    termsLink.textContent = texts['Terms of Use'];
-  }
-  if (privacyLink) {
-    privacyLink.textContent = texts['Privacy Policy'];
-  }
-  if (restoreLink) {
-    restoreLink.textContent = texts['Restore'];
-  }
-
-  const offers = document.querySelectorAll('.offers__offer');
-  offers.forEach((offer, index) => {
-    const offerTitle = offer.querySelector('.offers__title');
-    const offerPrice = offer.querySelector('.offers__price');
-    const offerPriceWeek = offer.querySelector('.offers__price_week');
-
-    const label = offer.querySelector('.offers__label');
-
-    if (index === 0 && offerTitle && offerPrice && label) {
-      offerTitle.textContent = texts['YEARLY ACCESS'];
-      offerPrice.textContent = texts['Just {{price}} per year'].replace('{{price}}', '$39.99');
-      label.textContent = texts['BEST OFFER'];
-      offerPriceWeek.innerHTML = texts['{{price}} <br>per week'].replace('{{price}}', '$6.99');
+  offerElements.forEach((offer) => {
+    const offerSelector = `.offers__offer:nth-child(${offer.titleIndex + 1})`;
+    updateTextContent(
+      `${offerSelector} .offers__title`,
+      texts[offer.titleText],
+    );
+    if (offer.priceText) {
+      updateTextContent(
+        `${offerSelector} .offers__price`,
+        texts[offer.priceText].replace("{{price}}", offer.priceValue),
+      );
     }
-    if (index === 1 && offerTitle && offerPrice) {
-      offerTitle.textContent = texts['WEEKLY ACCESS'];
-      offerPrice.innerHTML = texts['{{price}} <br>per week'].replace('{{price}}', '$6.99');
+    if (offer.priceWeekText) {
+      updateTextContent(
+        `${offerSelector} .offers__price_week`,
+        texts[offer.priceWeekText].replace("{{price}}", offer.priceWeekValue),
+      );
     }
   });
 }
@@ -103,57 +64,83 @@ function simulateFetch(lang) {
       } else {
         resolve(texts);
       }
-    }, 1000); 
+    }, 1000);
   });
 }
 
-document.addEventListener('DOMContentLoaded', async function() {
-  const currentLang = navigator.language.substring(0, 2);
-  adjustFontSizeForLanguage(currentLang); 
+function showLoading() {
+  document.getElementById("loading").style.display = "flex";
+}
+
+function hideLoading() {
+  document.getElementById("loading").style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const urlLocaleTag = urlParams.get("lang")?.toLowerCase();
+
+  const currentLang = urlLocaleTag || navigator.language.substring(0, 2);
+  adjustFontSizeForLanguage(currentLang);
+
+  showLoading();
 
   try {
     const texts = await simulateFetch(currentLang);
-    updateLanguageTexts(texts); 
+    updateLanguageTexts(texts);
   } catch (error) {
-    console.error('Error fetching language data:', error);
-    updateLanguageTexts(languages['en']);
+    console.warn("Error fetching language data:", error);
+    updateLanguageTexts(languages["en"]);
+  } finally {
+    hideLoading();
   }
 
-  const offers = document.querySelectorAll('.offers__offer');
-  let selectedOffer = document.querySelector('.offers__offer_selected');
+  const offers = document.querySelectorAll(".offers__offer");
+  let selectedOffer = document.querySelector(".offers__offer_selected");
 
-  offers.forEach(offer => {
-    offer.addEventListener('click', () => {
+  offers.forEach((offer) => {
+    offer.addEventListener("click", () => {
       if (selectedOffer) {
-        selectedOffer.classList.remove('offers__offer_selected');
+        selectedOffer.classList.remove("offers__offer_selected");
       }
-      offer.classList.add('offers__offer_selected');
+      offer.classList.add("offers__offer_selected");
       selectedOffer = offer;
     });
   });
 
-  document.querySelector('.offers__continue').addEventListener('click', () => {
+  document.querySelector(".offers__btn").addEventListener("click", () => {
     if (selectedOffer) {
       const offerIndex = Array.from(offers).indexOf(selectedOffer);
-      offerIndex === 0 ? (window.location.href = 'https://apple.com/') : (window.location.href = 'https://google.com/');
+      offerIndex === 0
+        ? (window.location.href = "https://apple.com/")
+        : (window.location.href = "https://google.com/");
     }
   });
-  const observer = new MutationObserver(mutationsList => {
+
+  const observer = new MutationObserver((mutationsList) => {
     for (let mutation of mutationsList) {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+      if (mutation.type === "attributes" && mutation.attributeName === "lang") {
         const newLang = document.documentElement.lang.substring(0, 2);
         adjustFontSizeForLanguage(newLang);
 
+        showLoading();
+
         simulateFetch(newLang)
-          .then(texts => updateLanguageTexts(texts))
-          .catch(error => {
-            console.error('Error fetching language data:', error);
-            updateLanguageTexts(languages['en']);
+          .then((texts) => updateLanguageTexts(texts))
+          .catch((error) => {
+            console.error("Error fetching language data:", error);
+            updateLanguageTexts(languages["en"]);
+          })
+          .finally(() => {
+            hideLoading();
           });
       }
     }
   });
 
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"],
+  });
 });
-
