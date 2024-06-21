@@ -1,57 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BP_Mobile</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <main class="main">
-    <section class="modal">
-      <div class="modal__close">
-        <span class="modal__close-line1"></span>
-        <span class="modal__close-line2"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BP_Mobile</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <main class="main">
+      <div id="loading" class="loading" style="display: none">
+        <div class="spinner"></div>
       </div>
-      <div class="modal__content">
-        <h1 class="modal__title"></h1>
-        <div class="modal__images">
-          <div class="modal__image modal__image_first">
-            <h2 class="modal__descr modal__descr_first"></h2>
+      <section class="modal">
+        <a href="#" class="modal__close">
+          <span class="modal__close-line1"></span>
+          <span class="modal__close-line2"></span>
+        </a>
+
+        <div class="modal__content">
+          <h1 class="modal__title">
+            Get Unlimited<br />
+            Access
+          </h1>
+
+          <div class="modal__features">
+            <div class="modal__image modal__features-image_first">
+              <h2 class="modal__descr modal__features-descr_first">
+                Unlimited Art <br />Creation
+              </h2>
+            </div>
+            <div class="modal__image modal__features-image_second">
+              <h2 class="modal__descr modal__features-descr_second">
+                Exclusive <br />Styles
+              </h2>
+            </div>
+            <div class="modal__image modal__features-image_third">
+              <h2 class="modal__descr modal__features-descr_third">
+                Magic Avatars <br />With 20% Off
+              </h2>
+            </div>
           </div>
-          <div class="modal__image modal__image_second">
-            <h2 class="modal__descr modal__descr_second"></h2>
-          </div>
-          <div class="modal__image modal__image_third">
-            <h2 class="modal__descr modal__descr_third"></h2>
-          </div>
-        </div>
-        <div class="modal__offers offers">
-          <div class="offers__offer offers__offer_selected">
-            <div class="offers__label">BEST OFFER</div>
-            <div class="offers__text">
-              <div class="offers__best">
-                <h2 class="offers__title">YEARLY ACCESS</h2>
-                <h2 class="offers__price">Just $39.99 per year</h2>
+
+          <div class="modal__offers offers">
+            <div class="offers__offer offers__offer_selected">
+              <div class="offers__label">BEST OFFER</div>
+              <div class="offers__text">
+                <div class="offers__best">
+                  <h2 class="offers__title">YEARLY ACCESS</h2>
+                  <h2 class="offers__price">Just {{price}} per year</h2>
+                </div>
+                <h2 class="offers__price offers__price_week">
+                  {{price}} <br />per week
+                </h2>
               </div>
-              <h2 class="offers__price offers__price_week">$0.48<span class="offers__per-week"> per week</span></h2>
             </div>
-          </div>
-          <div class="offers__offer">
-            <div class="offers__text">
-              <h2 class="offers__title">Weekly access</h2>
-              <h2 class="offers__price offers__price_week">$6.99 <span class="offers__per-week"> per week</span></h2>
+            <div class="offers__offer">
+              <div class="offers__text">
+                <h2 class="offers__title">Weekly access</h2>
+                <h2 class="offers__price offers__price_week">
+                  {{price}} <br />per week
+                </h2>
+              </div>
             </div>
+            <button class="offers__btn">Continue</button>
           </div>
-          <button class="offers__continue">Continue</button>
         </div>
-      </div>
-    </section>
-    <footer class="footer">
-      <a href="#" class="footer__link footer__link_terms">Terms of Use</a>
-      <a href="#" class="footer__link footer__link_privacy">Privacy Policy</a>
-      <a href="#" class="footer__link footer__link_restore">Restore</a>
-    </footer>
-  </main>
-</body>
+      </section>
+      <footer class="footer">
+        <a href="#" class="footer__link footer__link_terms">Terms of Use</a>
+        <a href="#" class="footer__link footer__link_privacy">Privacy Policy</a>
+        <a href="#" class="footer__link footer__link_restore">Restore</a>
+      </footer>
+    </main>
+  </body>
 </html>
