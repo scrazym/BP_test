@@ -35,7 +35,7 @@ yarn.lock
 
 # Ignore any personal or sensitive files
 config.json
-
+package-lock.json
 # Ignore any temporary files
 .tmp/
 
