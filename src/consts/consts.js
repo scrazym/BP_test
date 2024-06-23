@@ -7,13 +7,14 @@ import pt from "../languages/pt.json";
 
 export const elements = {
   ".modal__title": "Get Unlimited <br>Access",
-  ".modal__descr_first": "Unlimited Art <br>Creation",
-  ".modal__descr_second": "Exclusive <br>Styles",
-  ".modal__descr_third": "Magic Avatars <br>With 20% Off",
+  ".modal__features-descr_first": "Unlimited Art <br>Creation",
+  ".modal__features-descr_second": "Exclusive <br>Styles",
+  ".modal__features-descr_third": "Magic Avatars <br>With 20% Off",
   ".offers__btn": "Continue",
   ".footer__link_terms": "Terms of Use",
   ".footer__link_privacy": "Privacy Policy",
   ".footer__link_restore": "Restore",
+  ".offers__label": "BEST OFFER",
 };
 
 // Массив предложений
