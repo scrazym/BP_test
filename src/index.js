@@ -79,8 +79,7 @@ function hideLoading() {
 document.addEventListener("DOMContentLoaded", async function () {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const urlLocaleTag = urlParams.get("lang")?.toLowerCase();
-
+  const urlLocaleTag = urlParams.get("lang")?.toLowerCase().substring(0, 2);
   const currentLang = urlLocaleTag || navigator.language.substring(0, 2);
   adjustFontSizeForLanguage(currentLang);
 
