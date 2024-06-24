@@ -28,7 +28,7 @@ npm-debug.log*
 yarn.lock
 
 # Ignore dist folder for production builds
-/dist/
+# /dist/
 
 # Ignore any backup files
 *~
@@ -41,3 +41,4 @@ package-lock.json
 
 # Ignore any IDE or editor configuration files
 .idea/
+.vercel
