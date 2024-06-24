@@ -19,7 +19,7 @@ Test for BP_Mobile
 
 4. ## 💻 Live:
 
-You can see live demo on [Vercel](https://bp-test-beige.vercel.app/)
+You can see live demo on [GH-pages](https://scrazym.github.io/BP_test/dist/)
 
 5. ## Design:
 
