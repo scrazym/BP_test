@@ -1,27 +1,6 @@
 import "./styles.css";
 import { elements, offerElements, languages } from "./consts/consts";
 
-function adjustFontSizeForLanguage(lang) {
-  const htmlElement = document.documentElement;
-  htmlElement.classList.remove("small-font", "medium-font", "large-font");
-
-  switch (lang) {
-    case "ja":
-    case "zh":
-    case "de":
-    case "es":
-    case "fr":
-    case "pt":
-      htmlElement.classList.add("small-font");
-      break;
-    case "en":
-      htmlElement.classList.add("medium-font");
-      break;
-    default:
-      htmlElement.classList.add("medium-font");
-  }
-}
-
 function updateTextContent(selector, text) {
   const element = document.querySelector(selector);
   if (element) {
@@ -81,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const urlParams = new URLSearchParams(queryString);
   const urlLocaleTag = urlParams.get("lang")?.toLowerCase().substring(0, 2);
   const currentLang = urlLocaleTag || navigator.language.substring(0, 2);
-  adjustFontSizeForLanguage(currentLang);
+  document.documentElement.setAttribute("lang", currentLang);
 
   showLoading();
 
@@ -121,7 +100,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     for (let mutation of mutationsList) {
       if (mutation.type === "attributes" && mutation.attributeName === "lang") {
         const newLang = document.documentElement.lang.substring(0, 2);
-        adjustFontSizeForLanguage(newLang);
 
         showLoading();
 
