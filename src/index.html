@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BP_Mobile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
 
@@ -46,7 +52,7 @@
             <div class="offers__offer offers__offer_selected">
               <div class="offers__label">BEST OFFER</div>
               <div class="offers__text">
-                <div class="offers__best">
+                <div class="offers__best offers__access-wrapper">
                   <h2 class="offers__title">YEARLY ACCESS</h2>
                   <h2 class="offers__price">Just {{price}} per year</h2>
                 </div>
@@ -57,7 +63,9 @@
             </div>
             <div class="offers__offer">
               <div class="offers__text">
-                <h2 class="offers__title">Weekly access</h2>
+                <h2 class="offers__title offers__access-wrapper">
+                  Weekly access
+                </h2>
                 <h2 class="offers__price offers__price_week">
                   {{price}} <br />per week
                 </h2>
