@@ -30,26 +30,27 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 100vh;
   max-width: 760px;
   background: url("./images/bg375/bg@2x.jpg") no-repeat center center;
-  background-size: cover;
-  padding-bottom: 1.1rem;
+  background-size: 101%;
+  padding-bottom: 5.4rem;
 }
 
 .modal {
   width: 100%;
-  padding: 3.6rem 2.45rem 0 2.4rem;
+  padding: 0rem 2.45rem 0 2.4rem;
 }
 
 .modal__close {
-  position: relative;
+  position: absolute;
+  top: 3.6rem;
+  left: 2.2rem;
   width: 1.5rem;
   height: 1.5rem;
   display: inline-block;
-  margin-left: -1.5px;
 }
 
 .modal__close-line1,
@@ -69,18 +70,17 @@ body {
 
 .modal__content {
   width: 100%;
-  margin-top: 6.68rem;
 }
 
 .modal__title {
   font-size: 4.18rem;
   text-align: center;
-  line-height: 4.5rem;
+  line-height: 110%;
   letter-spacing: 0.06rem;
 }
 
 .modal__features {
-  margin-top: 4.2rem;
+  margin-top: 4.1rem;
   display: flex;
   justify-content: space-between;
   gap: 0.7rem;
@@ -119,7 +119,7 @@ body {
 
 .modal__offers {
   width: 100%;
-  margin-top: 4.1rem;
+  margin-top: 4.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -140,7 +140,7 @@ body {
 
 .offers__label {
   position: absolute;
-  top: -1.1rem;
+  top: -1.2rem;
   right: 2.3rem;
   height: 2rem;
   padding: 0.2rem 2.3rem 0.3rem 2.3rem;
@@ -221,10 +221,15 @@ body {
 }
 
 .footer {
+  position: absolute;
+  /* left: 50%;
+  transform: translateX(-50%); */
+  bottom: 1.1rem;
   display: flex;
   justify-content: center;
   gap: 3.4rem;
   padding-left: 0.2rem;
+  width: 100%;
 }
 
 .footer__link {
@@ -271,7 +276,8 @@ body {
 }
 [lang="ja"] {
   .modal__title {
-    font-size: 3.18rem;
+    font-size: 3.5rem;
+    line-height: 120%;
   }
 
   .modal__descr {
@@ -290,11 +296,16 @@ body {
     font-size: 1rem;
   }
 }
-
+[lang="fr"] {
+  .modal__title {
+    font-size: 3.8rem;
+    line-height: 120%;
+  }
+}
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
   .main {
     background: url("./images/bg375/bg@3x.jpg") no-repeat center center;
-    background-size: cover;
+    background-size: 101%;
   }
 }
 
@@ -308,8 +319,8 @@ body {
   }
   .main {
     background: url("./images/bg390/bg@3x.jpg") no-repeat center center;
-    background-size: cover;
-    padding-bottom: 3rem;
+    background-size: 101%;
+    padding-bottom: 9rem;
   }
 
   .modal {
@@ -323,19 +334,12 @@ body {
   .modal__close {
     width: 1.7rem;
     height: 1.7rem;
-  }
-
-  .modal__content {
-    margin-top: 15.2rem;
-  }
-
-  .modal__features-image_first {
-    background-size: 109%;
+    top: 7rem;
   }
 
   .modal__features {
     gap: 1.4rem;
-    margin-top: 4.3rem;
+    margin-top: 4.1rem;
   }
 
   .modal__offers {
@@ -370,21 +374,15 @@ body {
   .offers__btn {
     margin-top: 0.8rem;
   }
-
+  .footer {
+    bottom: 3.1rem;
+  }
   [lang="de"] {
-    .modal__content {
-      margin-top: 10.7rem;
-    }
-
     .footer__link {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
   }
   [lang="fr"] {
-    .modal__content {
-      margin-top: 10.7rem;
-    }
-
     .footer {
       gap: 1rem;
     }
@@ -407,11 +405,6 @@ body {
 }
 
 @media only screen and (max-device-width: 375px) and (max-device-height: 812px) and (orientation: portrait) {
-  [lang="de"] {
-    .modal__content {
-      margin-top: 2.2rem;
-    }
-  }
   [lang="fr"] {
     .modal__content {
       margin-top: 2.2rem;
